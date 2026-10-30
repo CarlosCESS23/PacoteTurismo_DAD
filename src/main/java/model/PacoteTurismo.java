@@ -1,5 +1,6 @@
 package model;
 
+import jakarta.persistence.*;
 import utils.ItemServico;
 
 import java.io.Serializable;
@@ -7,15 +8,35 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Entity
+@Table(name="PacoteTurismo")
 public class PacoteTurismo implements Serializable {
     private final long serialVersionUID = 1l;
 
+    @Column(name="pacId",nullable = false,unique = true)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int pacId;
+
+    @Column(name="pacOrigem",nullable = false,unique = false,length = 4)
     private String pacOrigem;
+
+    @Column(name="pacDestino",nullable = false,unique = false,length = 4)
     private String pacDestino;
-    private List<Item> pacItens;
+
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true,
+            mappedBy = "pacoteTurismo"
+    )
+    private List<Item> pacItens = new ArrayList<>();
+
+    @Column(name= "pacDesconto", nullable = true, unique = false)
     private boolean pacDesconto;
+    @Column(name = "pacPessoa",nullable = true,unique = false)
     private int pacPessoa;
+    @Column(name="pacValorTotal",nullable = true,unique = false)
     private double pacValorTotal;
 
     public PacoteTurismo(int pacId, String pacOrigem, String pacDestino,int pacPessoa) {
@@ -23,7 +44,6 @@ public class PacoteTurismo implements Serializable {
         this.pacOrigem = pacOrigem;
         this.pacDestino = pacDestino;
         this.pacPessoa = pacPessoa;
-        this.pacItens = new ArrayList<>();
     }
 
     public void addItem(Item itemSelecionado){

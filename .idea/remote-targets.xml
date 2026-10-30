@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="WSL" type="wsl" uuid="275150ff-5ec6-403f-a629-4d6cee2800df">
+        <config>
+          <option name="distributionMsId" value="FedoraLinux-44" />
+        </config>
+        <ContributedStateBase type="JavaLanguageRuntime">
+          <config>
+            <option name="homePath" value="$PROJECT_DIR$/../../../../usr/java/jdk-25" />
+          </config>
+        </ContributedStateBase>
+        <ContributedStateBase type="MavenRuntime">
+          <config>
+            <option name="homePath" value="/home/CarlosCESS/.m2/wrapper/dists/apache-maven-3.10.0-bin/39q0qgmngdu329psje7bjgne79/apache-maven-3.10.0" />
+            <option name="versionString" value="3.10.0" />
+          </config>
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>
